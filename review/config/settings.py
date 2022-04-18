@@ -31,10 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
+
     'analysisapp',
-=======
->>>>>>> 3bce585e6fafb3f6c7a245bf6d3d97339ad7175d
     'homeapp',
     'bootstrap4',
     'django.contrib.admin',
@@ -132,6 +130,6 @@ STATICFILES_DIRS = [
 ]
 
 # 로그인 성공 시 자동으로 이동할 URL
-LOGIN_REDIRECT_URL = 'index1/'
+LOGIN_REDIRECT_URL = 'index/'
 # 로그아웃 성공 시 자동으로 이동할 URL
 LOGOUT_REDIRECT_URL = '/'
