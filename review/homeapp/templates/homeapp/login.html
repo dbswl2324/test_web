@@ -1,0 +1,49 @@
+{% comment %} {% extends "index1.html" %} {% endcomment %}
+{% load static %}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,800" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}?after" type="text/css" />
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="s004">
+        <h1>로그인</h1>
+        <form method="post" action="{% url 'login' %}" class="login">
+            {% csrf_token %}
+            {% include 'testapp/form_errors.html' %}
+            <div>
+              <label>사용자 ID</label>
+              <input type="text" name="username" id="username">
+            </div>
+            <div>
+              <label>비밀번호</label>
+              <input type="text" name="password" id="password">
+            </div>
+            <button type="submit">로그인</button>
+        </form>
+        <span>
+            아직 계정이 없으신가요?
+            <button type="button">
+                <a href="{% url 'signup' %}">회원가입</a>
+            </button>
+        </span>          
+    </div>
+        
+    <div class="suggestion">
+        <button type="button">
+          <a href="{% url 'index' %}">home</a>
+        </button>
+        |
+        <button type="button">
+          <a href="{% url 'signup' %}">sign up</a>
+        </button>
+      </div>
+</body>
+
+</html>
