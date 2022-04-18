@@ -23,5 +23,5 @@ urlpatterns = [
     # path('index1/', views.index1),
     # path('board/', views.board),
     # path('login/', views.login),
-    path('test/', include('homeapp.urls')),
+    path('home/', include('homeapp.urls')),
 ]
