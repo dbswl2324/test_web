@@ -23,5 +23,6 @@ urlpatterns = [
     # path('index1/', views.index1),
     # path('board/', views.board),
     # path('login/', views.login),
+    path('analysis/', include('analysisapp.urls')),
     path('test/', include('homeapp.urls')),
 ]
