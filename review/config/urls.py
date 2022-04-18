@@ -23,10 +23,6 @@ urlpatterns = [
     # path('index1/', views.index1),
     # path('board/', views.board),
     # path('login/', views.login),
-<<<<<<< HEAD
     path('analysis/', include('analysisapp.urls')),
-    path('test/', include('homeapp.urls')),
-=======
     path('home/', include('homeapp.urls')),
->>>>>>> 3bce585e6fafb3f6c7a245bf6d3d97339ad7175d
 ]
