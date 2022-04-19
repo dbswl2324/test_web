@@ -13,17 +13,20 @@
 
 <body>
     <div class="s004">
+      <div class="user-loginout">
         <h1>로그인</h1>
         <form method="post" action="{% url 'login' %}" class="login">
             {% csrf_token %}
             {% include 'homeapp/form_errors.html' %}
             <div>
               <label>사용자 ID</label>
-              <input type="text" name="username" id="username">
+              <br/>
+              <input type="text" name="username" id="username" placeholder="아이디를 입력해 주세요" />
             </div>
             <div>
               <label>비밀번호</label>
-              <input type="text" name="password" id="password">
+              <br />
+              <input type="password" name="password" id="password" placeholder="비밀번호를 입력해 주세요">
             </div>
             <button type="submit">로그인</button>
         </form>
@@ -31,10 +34,11 @@
             아직 계정이 없으신가요?
             <button type="button">
                 <a href="{% url 'signup' %}">회원가입
-                  
+
                 </a>
             </button>
-        </span>          
+        </span>     
+      </div>     
     </div>
         
     <div class="suggestion">
