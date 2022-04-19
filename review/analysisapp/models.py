@@ -41,4 +41,24 @@ class ArticleInfo(models.Model):
     #검색 카운트
     search_cnt= models.IntegerField()
 
+class ReviewData(models.Model):
+    # 블로그 게시글 고유코드 primary_key
+    blog_code = models.CharField(primary_key=True,max_length=30)
 
+    # 검색물품의 코드
+    aricle_code = models.IntegerField()
+
+    # 글작성자
+    writer = models.CharField(max_length=30)
+
+    # 글내용
+    content = models.TextField()
+
+    # 글 쓴 날짜
+    data = models.DateField()
+
+    # 저장된 섬네일 이름
+    thumnail_name = models.CharField(max_length=30)
+
+    # 글의 사진 갯수
+    picture_cnt = models.IntegerField()
