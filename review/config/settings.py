@@ -31,10 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
-=======
-
->>>>>>> c18f245d6abfc18f2082b7d087317cb0a0b57d86
     'homeapp',
     'analysisapp',
     'bootstrap4',
