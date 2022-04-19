@@ -1,8 +1,7 @@
 from django.db import models
 
-class Curriculun(models.Model):
-    name=models.CharField(max_length=255)
 
+# 리뷰 데이터 분석결과
 class ReviewAnalysis(models.Model):
     # primary key
     id = models.IntegerField(primary_key=True)
@@ -25,6 +24,7 @@ class ReviewAnalysis(models.Model):
     #부정적인글
     content_negative=models.TextField()
 
+# 검색 물품 기록
 class ArticleInfo(models.Model):
     # primary key
     article_code= models.IntegerField(primary_key=True)
@@ -40,3 +40,5 @@ class ArticleInfo(models.Model):
 
     #검색 카운트
     search_cnt= models.IntegerField()
+
+

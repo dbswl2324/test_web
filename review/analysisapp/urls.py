@@ -1,5 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
+
+app_name = 'analysisapp'
+
 urlpatterns = [
-    path('index/', views.show),
+    path('show/', views.show, name='show'),
+    path('index/', views.index, name='index'), 
 ]
+
