@@ -1,29 +1,6 @@
 from django.db import models
 from django.db.models.fields import CharField, IntegerField
 
-# 리뷰 데이터 분석결과
-class ReviewAnalysis(models.Model):
-    # primary key
-    id = models.IntegerField(primary_key=True)
-
-    # 블로그 게시글 고유 코드
-    blog_code=models.CharField(max_length=30)
-
-    #검색 물품의 코드
-    article_code=models.IntegerField()
-
-    #광고 분류
-    check_advertise=models.TextField()
-    
-    #글요약
-    content_summary=models.TextField()
-
-    #긍정적인글
-    content_positive=models.TextField()
-
-    #부정적인글
-    content_negative=models.TextField()
-
 # 검색 물품 기록
 class ArticleInfo(models.Model):
     # primary key
@@ -41,12 +18,10 @@ class ArticleInfo(models.Model):
     #검색 카운트
     search_cnt= models.IntegerField()
 
+# 리뷰 데이터 크롤링
 class ReviewData(models.Model):
     # 블로그 게시글 고유코드 primary_key
     blog_code = models.CharField(primary_key=True,max_length=30)
-
-    # 검색물품의 코드
-    aricle_code = models.IntegerField()
 
     # 글작성자
     writer = models.CharField(max_length=30)
@@ -62,3 +37,49 @@ class ReviewData(models.Model):
 
     # 글의 사진 갯수
     picture_cnt = models.IntegerField()
+
+    # 리뷰링크 
+    review_link = models.TextField(null=True)
+
+    # 검색물품의 코드
+    article_code=models.ForeignKey(ArticleInfo,on_delete=models.CASCADE,db_column='article_code')
+
+# 리뷰 데이터 분석결과
+class ReviewAnalysis(models.Model):
+    # primary key
+    id = models.IntegerField(primary_key=True)
+
+    #광고 분류
+    check_advertise=models.TextField()
+    
+    #글요약
+    content_summary=models.TextField()
+
+    #긍정적인글
+    content_positive=models.TextField()
+
+    #부정적인글
+    content_negative=models.TextField()
+
+    # 블로그 게시글 고유 코드
+    blog_code=models.ForeignKey("ReviewData",on_delete=models.CASCADE,db_column='blog_code')
+
+    # 검색물품의 코드
+    article_code=models.ForeignKey("ArticleInfo",on_delete=models.CASCADE,db_column='article_code')
+
+# 구매 데이터 크롤링
+class BuyList(models.Model):
+    # primary_key
+    id = models.IntegerField(primary_key=True)
+
+    # 구매링크
+    buy_link = models.TextField()
+
+    # 구매 가격
+    buy_coin = models.IntegerField()
+
+    # 구매 장소
+    buy_pla=models.CharField(max_length=30)
+
+    # 블로그 게시글 고유 코드
+    article_code=models.ForeignKey("ArticleInfo",on_delete=models.CASCADE,db_column='article_code')

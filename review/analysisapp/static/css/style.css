@@ -10415,7 +10415,7 @@ pre code {
   background-color: #ffffff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
-  border-radius: 2px;
+  border-radius: 30px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -15092,6 +15092,7 @@ button.bg-dark:focus {
 
 .d-none, .navbar.navbar-mini .navbar-menu-wrapper.navbar-search-wrapper {
   display: none !important;
+  border-radius: 30px;
 }
 
 .d-inline {
@@ -20190,12 +20191,6 @@ dl li {
   font-size: 0.875rem;
 }
 
-.table td img {
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
-}
-
 .table td .badge {
   margin-bottom: 0;
 }
@@ -21125,6 +21120,22 @@ dl li {
     text-align: left;
     padding-left: 20px;
   }
+}
+
+.profile{
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+}
+
+#review_img{
+  height: 80px;
+  width: 80px;
+}
+
+#buy_logo{
+  height: 30px;
+  width: 30px;
 }
 
 /*# sourceMappingURL=maps/style.css.map */
