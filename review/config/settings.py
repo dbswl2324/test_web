@@ -129,6 +129,6 @@ STATICFILES_DIRS = [
 ]
 
 # 로그인 성공 시 자동으로 이동할 URL
-LOGIN_REDIRECT_URL = 'index/'
+LOGIN_REDIRECT_URL = '/analysis/index'
 # 로그아웃 성공 시 자동으로 이동할 URL
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/home/index'
