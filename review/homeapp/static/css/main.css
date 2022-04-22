@@ -1122,8 +1122,8 @@ legend {
 .s004 form input {
     width: 428px;
     height: 56px;
-    padding: 12px;
-    margin: 15px auto;
+    /* padding: 12px; */
+    /* margin: 15px 3px; */
     border-radius: 6px;
     border: none;
 }
@@ -1135,7 +1135,6 @@ legend {
 }
 
 .s004 form button {
-    margin-top: 20px;
     width: 428px;
     height: 48px;
     color: #fff;
@@ -1153,10 +1152,14 @@ legend {
     margin-left: 310px;
 }
 
-.user-loginout span {
-    margin: 10px auto;
-}
-
 .user-loginout button:hover {
     cursor: pointer;
+}
+
+.user-loginout.login-addons button {
+    border: none;
+}
+
+.form-control {
+    font-size: 18px;
 }

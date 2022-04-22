@@ -12,7 +12,7 @@
 
 <body>
     <div class="s004">
-        <form method="GET" action="{% url "analysisapp:index" %}">
+        <form method="POST" action="{% url 'test' %}">
           {% csrf_token %}
           <fieldset>
               <legend>상품분석은 우리가 할게!넌 결정만 해</legend>
@@ -29,23 +29,29 @@
           </fieldset>
         </form>
         <div class="suggestion">
-          <button type="button">
-            <a href="{% url 'login' %}">login</a>
-          </button>
+          {% if user.is_authenticated %}
+            <button type="button">
+              <a href="{% url 'logout' %}">logout</a>
+            </button>
+          {% else %}
+            <button type="button">
+              <a href="{% url 'login' %}">login</a>
+            </button>
+          {% endif %}
           |
           <button type="button">
             <a href="{% url 'signup' %}">sign up</a>
           </button>
         </div>
     </div>
-    <script src="{% static 'js/extention/choices.js'%}"></script>
+    {% comment %} <script src="{% static 'js/extention/choices.js'%}"></script> {% endcomment %}
     <script>
-        var textPresetVal = new Choices('#choices-text-preset-values', {
+        /*var textPresetVal = new Choices('#choices-text-preset-values', {
             removeItemButton: true,
-        });
+        });*/ 
         var search = document.querySelector('.btn-search')
           search.addEventListener("click", function() {
-            window.location.href="signup.html"
+            window.location.href="signup.html";
         });
     </script>
 </body>
