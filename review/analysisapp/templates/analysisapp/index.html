@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,22 +112,24 @@
             <span class="mdi mdi-menu"></span>
           </button>
         </div>
+      <form action="" id="search_main">
         <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
           <ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="다른 상품을 분석하려면 여기에 입력하세요" aria-label="search" aria-describedby="search" required>
+                <input name="search_name" type="text" class="form-control" placeholder="다른 상품을 분석하려면 여기에 입력하세요" aria-label="search" aria-describedby="search" required>
               </div>
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
-              <a href="#" class="nav-link icon-link">
-                <i class="mdi mdi-search-outline"></i>
+              <a href="#" class="nav-link icon-link" onclick="document.getElementById('search_main').submit();">
+                <i class="mdi mdi-magnify"></i>
               </a>
             </li>
           </ul>
         </div>
+      </form>
       </nav>
       <!-- partial -->
       
@@ -135,8 +138,17 @@
           <div class="row">
             <div class="col-12 col-xl-6 grid-margin stretch-card">
               <div class="row w-100 flex-grow">
+                <div class="col-md-12 grid-margin stretch-card">                  
+                  <div class="card">                   
+                    <div class="card-body">
+                      <p class="card-title">리뷰요약</p>
+                    </div>
+                  </div> 
+                </div>
                 <div class="col-md-12 grid-margin stretch-card">
+                  
                   <div class="card">
+                    
                     <div class="card-body">
                       <p class="card-title">리뷰요약</p>
                       <h3>{{ item.content_summary }}</h3>
@@ -149,7 +161,7 @@
                       <div class="d-flex align-items-center justify-content-between flex-wrap">
                         <p class="card-title">연관어분석</p>                     
                       </div>                      
-                      <img src="{% static 'images/analysis/y1.png'%}" alt="image"/>
+                      <img src="{% get_static_prefix %}images/analysis/y{{item2}}.png" alt="image"/>
                     </div>
                   </div>
                 </div>
@@ -159,7 +171,7 @@
                       <div class="d-flex align-items-center justify-content-between flex-wrap">
                         <p class="card-title">감성어 분석</p>
                       </div>
-                      <img src="{% static 'images/analysis/k1.png'%}" alt="image"/>
+                      <img src="{% get_static_prefix %}images/analysis/k{{item2}}.png" alt="image"/>
                     </div>
                   </div>
                 </div>
@@ -167,6 +179,7 @@
             </div>
           </div>
         </div>
+
         <div class="main-panel">
          <div class="content-wrapper">
           <div class="row">
