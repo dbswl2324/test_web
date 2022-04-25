@@ -112,7 +112,8 @@
             <span class="mdi mdi-menu"></span>
           </button>
         </div>
-      <form action="/index/search_main/" id="search_main">
+      <form method="POST" action="search_main/" >
+        {% csrf_token %}
         <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
           <ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
@@ -123,7 +124,7 @@
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
-              <a href="#" class="nav-link icon-link" onclick="document.getElementById('search_main').submit();">
+              <a method="POST" href="index/" class="nav-link icon-link" onclick="document.getElementById('search_main').submit();">
                 <i class="mdi mdi-magnify"></i>
               </a>
             </li>
@@ -141,7 +142,7 @@
                 <div class="col-md-12 grid-margin stretch-card">                  
                   <div class="card">                   
                     <div class="card-body">
-                      <p class="card-title">리뷰요약</p>
+                      <b>{{list.search_name}}</b> 전체리뷰({{list.article_review_cnt}})건 중 진솔한 순수리뷰 ({{list.article_pure_review_cnt}})건을 선별하였습니다.
                     </div>
                   </div> 
                 </div>
@@ -164,6 +165,7 @@
                       <img src="{% get_static_prefix %}images/analysis/y{{item2}}.png" alt="image"/>
                     </div>
                   </div>
+
                 </div>
                 <div class="col-md-6 stretch-card">
                   <div class="card">

@@ -6,18 +6,17 @@ from analysisapp.models import ArticleInfo, BuyList, ReviewData,ReviewAnalysis
 def show(request):
     return render(request, 'analysisapp/show.html') 
 
-def search_analysis(request):
-    search_name = request.GET['search_name']
-    if search_name:
-         item = get_object_or_404(ReviewAnalysis, article_code=request.GET.get('article_code'))
-         
-         item2 = request.GET.get('article_code')
-         row = ReviewData.objects.filter(article_code=request.GET.get('article_code'))
-
-         item3=BuyList.objects.filter(article_code=request.GET.get('article_code')).order_by('buy_coin')
-         
-         return render(request, 'analysisapp/index.html', {'item': item,'item2':item2,'row':row,'item3':item3})
-    return HttpResponseRedirect('/analysis/index/')
+def search_main(request):
+    if request.method == "POST":
+        search_name = request.POST.get('search_name')
+        list = get_object_or_404(ArticleInfo, search_name=request.POST.get('search_name'))
+        item = get_object_or_404(ReviewAnalysis, article_code=list.article_code)
+        row = ReviewData.objects.filter(article_code=list.article_code)
+        item2 = list.article_code
+        item3=BuyList.objects.filter(article_code=list.article_code).order_by('buy_coin')
+        return render(request, 'analysisapp/index.html', {'item': item,'item2':item2,'row':row,'item3':item3,'list':list})
+    print("ffffffffffffff")
+    return HttpResponseRedirect('/analysis/show/')
 
 
 def index(request):
@@ -26,11 +25,23 @@ def index(request):
         print("스탭 1")
         item2 = request.GET.get('article_code')
         row = ReviewData.objects.filter(article_code=request.GET.get('article_code'))
-    
+        list = get_object_or_404(ArticleInfo, article_code=request.GET.get('article_code'))
         item3=BuyList.objects.filter(article_code=request.GET.get('article_code')).order_by('buy_coin')
-        
+    
         return render(request, 'analysisapp/index.html', {'item': item,'item2':item2,'row':row,'item3':item3})
+
+    elif 'search_name' in request.POST:
+        search_name = request.POST.get('search_name')
+        list = get_object_or_404(ArticleInfo, search_name=request.POST.get('search_name'))
+        item = get_object_or_404(ReviewAnalysis, article_code=list.article_code)
+        row = ReviewData.objects.filter(article_code=list.article_code)
+        item2 = list.article_code
+        item3=BuyList.objects.filter(article_code=list.article_code).order_by('buy_coin')
+        return render(request, 'analysisapp/index.html', {'item': item,'item2':item2,'row':row,'item3':item3,'list':list})
+
+    print("asfasdafds")    
     return HttpResponseRedirect('/analysis/show')
+    
 from datetime import datetime
 def show(request):
         if request.method == "POST":
