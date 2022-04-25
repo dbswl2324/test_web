@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="colorlib.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,800" />
-        <link rel="stylesheet" href="{% static 'css/main.css' %}?after" type="text/css" />
+        <link rel="stylesheet" href="{% static 'css/main2.css' %}?after" type="text/css" />
         <title>Sign up</title>
     </head>
     <body>
@@ -72,7 +72,7 @@
                             {% csrf_token %}
                             {% include 'homeapp/form_errors.html' %}
                             {{ form.as_p }}
-                            <button type="submit">회원가입</button>
+                            <button type="submit" id="check-loginout">회원가입</button>
                         </form>
                     </div>
                     {% endif %}

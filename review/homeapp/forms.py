@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 class UserForm(UserCreationForm):
     class Meta:
         model = Member
-        fields  = ["username", "password1", "password2", "email", "nickname", "userclass"]
+        fields  = ["username", "password1", "password2", "email", "nickname", "userclass",]
 
 class searchForm(forms.Form):
     search_item = forms.CharField(max_length=150)
