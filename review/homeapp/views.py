@@ -1,19 +1,13 @@
-from datetime import datetime
 from django.shortcuts import render
 
 # Create your views here.
 from curses import raw
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from homeapp.forms import UserForm
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-
-from homeapp.models import Member
-from .forms import UserChange
-from time import gmtime, strftime
-from datetime import datetime
 
 app_name = 'homeapp'
 
@@ -43,46 +37,14 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            login(request)
+            login(request,)
             return redirect('index')
     else:
         form = UserForm()
-        return render(request, "homeapp/signup.html", {'form': form})
+    return render(request, "homeapp/signup.html", {'form': form})
 
 def test(request):
     if request.method == "POST":
         item = request.POST.get('search-item')
-        time = datetime.now()
-        return HttpResponse((item, time))
-
-
-def mypage(request):
-    if request.method == "POST":
-        userclass = request.POST.get('userclass')
-        return HttpResponse(userclass)
-    return render(request, 'homeapp/mypage.html')
-
-# @login_message_required
-def user_delete(request):
-    request.user.delete()
-    logout(request)
-    context = {}
-    return render(request, 'homeapp/user_delete.html', context)
-
-def update(request, pk):
-    if request.method == "POST":
-        form = UserChange(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    else:
-        form = UserChange(instance=request.user)
-        context = {
-            'form': form
-        }
-        return render(request, 'homeapp/user_update.html', context)
-
-# class update(UpdateView):
-#     model = Member
-#     form_class = update
-#     success_url = reverse_lazy('homeapp:user_update.html')
+        return HttpResponse(item)
+    return render(request, 'homeapp/test.html')
