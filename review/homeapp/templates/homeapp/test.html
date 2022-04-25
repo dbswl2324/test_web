@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    test
-    {{item}}
+    {% csrf_token %}
+        {{item}}
+        {{time}}
+        datetime.datetime.now()
 </body>
 </html>

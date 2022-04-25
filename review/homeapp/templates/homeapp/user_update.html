@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 마이페이지 > <strong>개인정보수정</strong> </h1>
+    <form method="POST" action="{% url 'user_update' pk=user.pk %}">
+        <span> 
+            프로필 사진 등록 -> 추후 수정하겟습니다..
+            <input type="file" accept=".jpg, .png" />
+            <strong> 파일형식은 .jpg, .png이며 크기는 350kb 미만이어야 합니다. </strong>
+        </span>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">저장하기</button>
+    </form>
+</body>
+</html>
