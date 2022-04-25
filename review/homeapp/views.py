@@ -15,7 +15,7 @@ from .forms import UserChange
 from time import gmtime, strftime
 from datetime import datetime
 
-from review.homeapp.forms import UserChange
+from homeapp.forms import UserChange
 
 app_name = 'homeapp'
 
