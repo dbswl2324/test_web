@@ -53,7 +53,7 @@ def signup(request):
 
 def test(request):
     if request.method == "POST":
-        search_name = request.POST.get('search-item')
+        search_name = request.POST.get('search_name')
         time = datetime.now()
         return HttpResponse((search_name, time))
 
