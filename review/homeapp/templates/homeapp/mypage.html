@@ -1,56 +1,42 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .user-modify img {
-            margin: auto 10%;
-        }
+{% extends "base.html" %}
+{% load static %} 
 
-        #userdelete:hover {
-            cursor: pointer;
-        }
-    </style>
-</head>
 
-<body>
+{% block content %}
     <section>
         <h1> 마이페이지 </h1>
         <div class="options">
             <div class="user-modify">
                 {% comment %} {% if target_user == user %} {% endcomment %}
-                <a href="{% url 'user_update' pk=user.pk %}">
-                    <img src="{% static 'images/메인페이지-개인정보수정.png' %}">
+                <a href="{% url 'homeapp:user_update' pk=user.pk %}">
+                    <img src="{% static 'assets/images/메인페이지-개인정보수정.png' %}">
                 </a>
                 <a href="#">
-                    <img src="{% static 'images/메인페이지-검색기록.png' %}">
+                    <img src="{% static 'assets/images/메인페이지-검색기록.png' %}">
                 </a>
                 {% comment %} {% endif %} {% endcomment %}
                 <a href="#">
-                    <img src="{% static 'images/메인페이지-나의문의.png' %}">
+                    <img src="{% static 'assets/images/메인페이지-나의문의.png' %}">
                 </a>
                 <div id="userdelete">
-                    <img src="{% static 'images/메인페이지-회원탈퇴.png' %}">
+                    <img src="{% static 'assets/images/메인페이지-회원탈퇴.png' %}">
                 </div>
             </div>
         </div>
     </section>
-</body>
-</html>
 
-<script>
-    var user_delete = document.querySelector('#userdelete');
-    var url = "{% url 'user_delete' %}"
-    user_delete.addEventListener("click", function() {
-        if(!confirm("정말 탈퇴하시겠습니까?")) {
-            alert("취소되었습니다.");
-        } 
-        else {
-            document.location.href = url;
-            alert("탈퇴가 완료되었습니다.")
-        }
-    });
-</script>
+    <script>
+        var user_delete = document.querySelector('#userdelete');
+        var url = "{% url 'homeapp:user_delete' %}"
+        user_delete.addEventListener("click", function() {
+            if(!confirm("정말 탈퇴하시겠습니까?")) {
+                alert("취소되었습니다.");
+            } 
+            else {
+                document.location.href = url;
+                alert("탈퇴가 완료되었습니다.")
+            }
+        });
+    </script>
+
+{%endblock content%}

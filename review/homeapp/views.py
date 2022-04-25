@@ -15,13 +15,11 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .forms import UserChange
-
 
 app_name = 'homeapp'
 
-def index(request):
-    return render(request, "homeapp/index.html")
+def home(request):
+    return render(request, "homeapp/home.html")
 # Create your views here.
 
 def board(request):
@@ -36,21 +34,6 @@ def login(request):
     else:
         return render(request, "homeapp/login.html")
 
-# @require_http_methods(["GET", "POST"])
-# @csrf_exempt
-# def signup(request):
-#     if request.method=="POST":
-#         form = UserForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             raw_password = form.cleaned_data.get('password1')
-#             user = authenticate(username=username, password=raw_password)
-#             login(request,)
-#             return redirect('index')
-#     else:
-#         form = UserForm()
-#     return render(request, "homeapp/signup.html", {'form': form})
 
 def signup(request):
     if request.method == 'POST':
@@ -97,18 +80,18 @@ def user_delete(request):
     context = {}
     return render(request, 'homeapp/user_delete.html', context)
 
-# def update(request, pk):
-#     if request.method == "POST":
-#         form = UserChange(request.POST, instance=request.user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-#     else:
-#         form = UserChange(instance=request.user)
-#         context = {
-#             'form': form
-#         }
-#         return render(request, 'homeapp/user_update.html', context)
+def update(request, pk):
+    if request.method == "POST":
+        form = UserChange(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = UserChange(instance=request.user)
+        context = {
+            'form': form
+        }
+        return render(request, 'homeapp/user_update.html', context)
 
 # class update(UpdateView):
 #     model = Member

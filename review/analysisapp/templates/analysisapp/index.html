@@ -1,23 +1,8 @@
 {% load static %}
-{% load bootstrap4 %}
+{% comment %} {% load bootstrap4 %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Spica Admin</title>
-  <!-- base:css -->
-  <link href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}" rel="stylesheet" />
-  <link href="{% static 'vendors/css/vendor.bundle.base.css' %}" rel="stylesheet" />
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-  <!-- endinject -->
-  <link href="{% static 'images/favicon.png' %}" rel="shortcut icon" />
-</head>
+{% include 'analysis_head.html' %}
 <body>
   <div class="container-scroller d-flex">
     <!-- partial:./partials/_sidebar.html -->
