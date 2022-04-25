@@ -2,7 +2,6 @@
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -112,7 +111,7 @@
             <span class="mdi mdi-menu"></span>
           </button>
         </div>
-      <form method="POST" action="search_main/" >
+      <form method="POST" action="{% url 'analysis:index' %}" >
         {% csrf_token %}
         <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
           <ul class="navbar-nav mr-lg-2">
@@ -124,7 +123,7 @@
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item">
-              <a method="POST" href="index/" class="nav-link icon-link" onclick="document.getElementById('search_main').submit();">
+              <a method="POST" href="{% url 'analysis:index' %}" class="nav-link icon-link" onclick="document.getElementById('search_main').submit();">
                 <i class="mdi mdi-magnify"></i>
               </a>
             </li>
