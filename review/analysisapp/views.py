@@ -31,3 +31,9 @@ def index(request):
         
         return render(request, 'analysisapp/index.html', {'item': item,'item2':item2,'row':row,'item3':item3})
     return HttpResponseRedirect('/analysis/show')
+from datetime import datetime
+def show(request):
+        if request.method == "POST":
+            search_name = request.POST.get('search-item')
+            time = datetime.now()
+        return HttpResponse((search_name, time))

@@ -51,9 +51,9 @@ def signup(request):
 
 def test(request):
     if request.method == "POST":
-        item = request.POST.get('search-item')
+        search_name = request.POST.get('search-item')
         time = datetime.now()
-        return HttpResponse((item, time))
+        return HttpResponse((search_name, time))
 
 
 def mypage(request):
