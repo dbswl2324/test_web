@@ -6,21 +6,20 @@ from curses import raw
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from homeapp.forms import UserForm
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 
 from homeapp.models import Member
-from .forms import UserChange
-from time import gmtime, strftime
 from datetime import datetime
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
-from homeapp.forms import UserChange
 
 app_name = 'homeapp'
 
-def index(request):
-    return render(request, "homeapp/index.html")
+def home(request):
+    return render(request, "homeapp/home.html")
 # Create your views here.
 
 def board(request):
@@ -30,26 +29,36 @@ def login(request):
     if request.method == "POST":
         user_id = request.POST.get('username')
         user_pw = request.POST.get('password')
-        # m = Member.objects.get(user_id = user_id, user_pw = user_pw)
-        return redirect('index')
+        m = Member.objects.get(user_id = user_id, user_pw = user_pw)
+        return redirect('homeapp:home')
     else:
         return render(request, "homeapp/login.html")
 
-@require_http_methods(["GET", "POST"])
-@csrf_exempt
+
 def signup(request):
-    if request.method=="POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request,)
-            return redirect('index')
+    if request.method == 'POST':
+
+        user_id = request.POST.get('username')
+        user_pw =  request.POST.get('password1')
+        user_pw_check =request.POST.get('password2')
+        user_email = request.POST.get('email')
+        user_nickname = request.POST.get('nickname')
+        user_class = request.POST.get('user_class')
+
+        if user_pw_check != user_pw:
+            messages.info(request, '비밀번호가 일치하지 않습니다.')
+            return HttpResponseRedirect(reverse('homeapp:signup'))   
+        try:
+            user = Member.objects.get(user_id = user_id)
+
+            messages.info(request, '사용중인 아이디입니다.')
+            return HttpResponseRedirect(reverse('homeapp:signup'))   
+        except Member.DoesNotExist as e:
+            m = Member(user_id=user_id, user_pw=user_pw, user_nickname=user_nickname,user_email=user_email,user_class=user_class)
+            m.save()
+            return HttpResponseRedirect(reverse('homeapp:login'))   
     else:
-        form = UserForm()
-    return render(request, "homeapp/signup.html", {'form': form})
+        return render(request,'homeapp/signup.html')  
 
 def test(request):
     if request.method == "POST":
@@ -76,7 +85,7 @@ def update(request, pk):
         form = UserChange(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('home')
     else:
         form = UserChange(instance=request.user)
         context = {

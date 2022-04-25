@@ -1,21 +1,11 @@
-{% load static %}
-<html lang="ko">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="author" content="colorlib.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,800" />
-    {% comment %} <link rel="stylesheet" href="{% static 'css/main.css' %}?after" type="text/css" /> {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/main2.css' %}?after" type="text/css" />
-    <title>Login</title>
-</head>
+{% extends "base.html" %}
+{% load static %} 
 
-<body>
+{% block content %}
     <div class="s004">
       <div class="user-loginout">
         <h1>로그인</h1>
-        <form method="post" action="{% url 'login' %}" class="login">
+        <form method="post" action="{% url 'homeapp:login' %}" class="login">
             {% csrf_token %}
             {% include 'homeapp/form_errors.html' %}
             <div>
@@ -33,20 +23,18 @@
         <span class="login-addons">
               아직 계정이 없으신가요?
             <button type="button">
-                <a href="{% url 'signup' %}">회원가입</a>
+                <a href="{% url 'homeapp:signup' %}">회원가입</a>
             </button>
         </span>     
-      </div>     
+      </div>
     </div>
     <div class="suggestion">
         <button type="button">
-          <a href="{% url 'index' %}">home</a>
+          <a href="{% url 'homeapp:home' %}">home</a>
         </button>
         |
         <button type="button">
-          <a href="{% url 'signup' %}">sign up</a>
+          <a href="{% url 'homeapp:signup' %}">sign up</a>
         </button>
     </div>
-</body>
-
-</html>
+{%endblock content%}

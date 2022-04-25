@@ -6,6 +6,10 @@ from analysisapp.models import ArticleInfo, BuyList, ReviewData,ReviewAnalysis
 def show(request):
     return render(request, 'analysisapp/show.html') 
 
+
+def exa1(request):
+    return render(request, 'analysisapp/index.html') 
+
 def search_main(request):
     if request.method == "POST":
         search_name = request.POST.get('search_name')
@@ -15,7 +19,7 @@ def search_main(request):
         item2 = list.article_code
         item3=BuyList.objects.filter(article_code=list.article_code).order_by('buy_coin')
         return render(request, 'analysisapp/index.html', {'item': item,'item2':item2,'row':row,'item3':item3,'list':list})
-    print("ffffffffffffff")
+        
     return HttpResponseRedirect('/analysis/show/')
 
 def index(request):
@@ -24,11 +28,9 @@ def index(request):
         print('이것은 무엇이냐 ',article_code)
         if article_code:       
             item = get_object_or_404(ReviewAnalysis, article_code=article_code)
-            print("스탭 1")
             row = ReviewData.objects.filter(article_code=article_code)
             list = get_object_or_404(ArticleInfo, article_code=article_code)
             item3=BuyList.objects.filter(article_code=article_code).order_by('buy_coin')
-        
             return render(request, 'analysisapp/index.html', {'item': item,'item2':article_code,'row':row,'item3':item3})
         
         else :
