@@ -15,7 +15,7 @@
         <form method="POST" action="{% url 'test' %}">
           {% csrf_token %}
           <fieldset>
-              <legend>상품분석은 우리가 할게!넌 결정만 해</legend>
+              <legend>상품분석은 우리가 할게! 넌 결정만 해</legend>
               <div class="inner-form">
                   <div class="input-field">
                       <input class="form-control" id="choices-text-preset-values" type="text" placeholder="관심상품명을 입력해주세요" name="search-item" aria-label="search-item" />
@@ -33,15 +33,18 @@
             <button type="button">
               <a href="{% url 'logout' %}">logout</a>
             </button>
+            |
+            <button type="button">
+              <a href="{% url 'mypage' %}">my page</a>
           {% else %}
             <button type="button">
               <a href="{% url 'login' %}">login</a>
             </button>
+            |
+            <button type="button">
+              <a href="{% url 'signup' %}">sign up</a>
+            </button>
           {% endif %}
-          |
-          <button type="button">
-            <a href="{% url 'signup' %}">sign up</a>
-          </button>
         </div>
     </div>
     {% comment %} <script src="{% static 'js/extention/choices.js'%}"></script> {% endcomment %}

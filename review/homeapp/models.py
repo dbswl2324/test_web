@@ -1,10 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-CHOICE_CLASS = ((1, 'subscribed'), (0, 'unsubscribed'))
+CHOICE_CLASS = (('subscribed', 'subscribed'), ('unsubscribed', 'unsubscribed'))
 
-class Member(models.Model):
-    user_id = models.CharField(max_length=50, unique=True)
-    user_pw = models.CharField(max_length=50)
-    user_email = models.EmailField()
-    user_class = models.IntegerField(choices = CHOICE_CLASS)
-# Create your models here.
+class Member(AbstractUser):
+    nickname = models.CharField(max_length=100)
+    userclass = models.CharField(
+        max_length=50,
+        choices=CHOICE_CLASS, 
+        default='unsubscribed',
+    )

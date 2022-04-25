@@ -133,3 +133,13 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/home/index'
 # 로그아웃 성공 시 자동으로 이동할 URL
 LOGOUT_REDIRECT_URL = '/home/index'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_COOKIE_AGE = 3600
+
+# request 요청마다 session 정보를 저장하여 age값을 초기화, session 정보를 유지합니다.
+# 해당 값이 false일 경우 쿠키 저장 시간이 만료되면 세션이 종료됩니다.
+SESSION_SAVE_EVERY_REQUEST = True
+
+AUTH_USER_MODEL = 'homeapp.Member'
