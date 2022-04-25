@@ -9,8 +9,11 @@ from django.contrib.auth import authenticate, login, logout
 from homeapp.forms import UserForm
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+
+from homeapp.models import Member
 from .forms import UserChange
 from time import gmtime, strftime
+from datetime import datetime
 
 app_name = 'homeapp'
 
@@ -49,9 +52,9 @@ def signup(request):
 def test(request):
     if request.method == "POST":
         item = request.POST.get('search-item')
-        time = request.POST.get(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-        return HttpResponse(item, time)
-    return render(request, 'analysis/index.html')
+        time = datetime.now()
+        return HttpResponse((item, time))
+
 
 def mypage(request):
     if request.method == "POST":
@@ -79,3 +82,7 @@ def update(request, pk):
         }
         return render(request, 'homeapp/user_update.html', context)
 
+# class update(UpdateView):
+#     model = Member
+#     form_class = update
+#     success_url = reverse_lazy('homeapp:user_update.html')
