@@ -81,9 +81,21 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+
+    'custom': { # thirdapp에서 사용할 데이터베이스 설정 추가
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'Busan1412',
+    'USER': 'review_master',
+    'PASSWORD': 'aivle1412',
+    'HOST': 'iptimejong96.iptime.org',
+    'PORT': 1412
     }
 }
 
+DATABASE_ROUTERS = [
+    'homeapp.router.DBRouter',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -143,6 +155,4 @@ SESSION_COOKIE_AGE = 3600
 # 해당 값이 false일 경우 쿠키 저장 시간이 만료되면 세션이 종료됩니다.
 SESSION_SAVE_EVERY_REQUEST = True
 
-AUTH_USER_MODEL = 'homeapp.Member'
-
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+# DEFAULT_AUTO_FIELD='django.db.models.AutoField'

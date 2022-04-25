@@ -10,59 +10,60 @@
         <title>Sign up</title>
     </head>
     <body>
+        <div class="s004">
+            <div class="user-loginout">
+                <h1> 회원가입 </h1>
+                    <form method="POST" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        {% include 'homeapp/form_errors.html' %}
+                        <div class="user-info">
+                            <label for="username">아이디</label>
+                            <br />
+                            <input type="text" class="form-control" name="username" id="username">
+                        </div>
+                        <div class="user-info">
+                            <label for="password1">비밀번호</label>
+                            <br/>
+                            <input type="password" class="form-control" name="password1" id="password1">
+                        </div>
+                        <div class="user-info">
+                            <label for="password2">비밀번호 확인</label>
+                            <br/>
+                            <input type="password" class="form-control" name="password2" id="password2">
+                        </div>
+                        <div class="user-info">
+                            <label for="email">이메일</label>
+                            <br/>
+                            <input type="text" class="form-control" name="email" id="email">
+                        </div>
+                        <div class="user-info">
+                            <label for="nickname">닉네임</label>
+                            <br/>
+                            <input type="text" class="form-control" name="nickname" id="nickname">
+                        </div>
+                        <div class="user-info">
+                            <label for="validationTextarea" class="form-label" style="font-family:NanumSquareR;">언어선택</label>
+                            <select class="form-select" required aria-label="select example" style="font-family:NanumSquareR;" name="user_class">
+                                <option value=0>일반회원</option>
+                                <option value=1>구독</option>
+                            </select>
+
+                            {% comment %} <label for="userclass">멤버십 구독</label>
+                            <br/>
+                            <input type="radio" class="form-control" name="userclass" id="userclass" value="unsubscribed">일반회원으로 계속하기
+                            <input type="radio" class="form-control" name="userclass" id="userclass" value="subscribed">구독하기 {% endcomment %}
+                        </div> 
+                        <button type="submit" class="btn btn-primary">회원가입</button>
+                    </form>
+                    <span>
+                        이미 계정이 있으신가요?
+                        <button type="button">
+                            <a href="{% url 'login' %}">로그인</a>
+                        </button>
+                    </span>
+            </div> 
+        </div>
             {% comment %} <div class="s004">
-                <div class="user-loginout">
-                    <h1> 회원가입 </h1>
-                    {% if user.is_authenticated %}
-                        이미 로그인했어요!
-                    {% else %}
-                        <form method="POST" action="{% url 'signup' %}">
-                            {% csrf_token %}
-                            {% include 'homeapp/form_errors.html' %}
-                            <div class="user-info">
-                                <label for="username">아이디</label>
-                                <br />
-                                <input type="text" class="form-control" name="username" id="username" value="{{ form.username.value|default_if_none:'' }}">
-                            </div>
-                            <div class="user-info">
-                                <label for="password1">비밀번호</label>
-                                <br/>
-                                <input type="password" class="form-control" name="password1" id="password1" value="{{ form.password1.value|default_if_none:'' }}">
-                            </div>
-                            <div class="user-info">
-                                <label for="password2">비밀번호 확인</label>
-                                <br/>
-                                <input type="password" class="form-control" name="password2" id="password2" value="{{ form.password2.value|default_if_none:'' }}">
-                            </div>
-                            <div class="user-info">
-                                <label for="email">이메일</label>
-                                <br/>
-                                <input type="text" class="form-control" name="email" id="email" value="{{ form.email.value|default_if_none:'' }}">
-                            </div>
-                            <div class="user-info">
-                                <label for="user-class">멤버십 구독</label>
-                                <br/>
-                                <input type="radio" name="user-class" value="unsubscribed" />일반회원으로 계속하기
-                                <input type="radio" name="user-class"  value="subscribed" />구독하기
-                            </div>
-                            {% comment %} <div class="user-info">
-                                <label for="userclass">멤버십 구독</label>
-                                <br/>
-                                <input type="radio" class="form-control" name="userclass" id="userclass" value="unsubscribed">일반회원으로 계속하기
-                                <input type="radio" class="form-control" name="userclass" id="userclass" value="subscribed">구독하기
-                            </div> 
-                            <button type="submit" class="btn btn-primary">회원가입</button>
-                        </form>
-                        <span>
-                            이미 계정이 있으신가요?
-                            <button type="button">
-                                <a href="{% url 'login' %}">로그인</a>
-                            </button>
-                        </span>
-                    {% endif %}
-                </div> 
-            </div> {% endcomment %}
-            <div class="s004">
                 <div class="user-loginout">
                     <h1>회원가입</h1>
                     {% if user.is_authenticated %}
@@ -92,6 +93,6 @@
                         {% endif %}
                     </div>
                 </div>
-            </div>       
+            </div>        {% endcomment %}
     </body>
 </html>
