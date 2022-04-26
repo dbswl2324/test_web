@@ -108,6 +108,7 @@ DATABASES = {
 }
 DATABASE_ROUTERS = [
     'homeapp.router.DBRouter',
+    'analysisapp.router.DBRouter',
 ]
 
 # Password validation
