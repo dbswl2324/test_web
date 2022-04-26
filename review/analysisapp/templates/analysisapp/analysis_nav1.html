@@ -24,24 +24,24 @@
       </button>
     </div>
 
-    <form method="POST" action="{% url 'analysis:index' %}" >
-        {% csrf_token %}
-        <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <input name="search_name" type="text" class="form-control" placeholder="다른 상품을 분석하려면 여기에 입력하세요" aria-label="search" aria-describedby="search" required>
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item">
-              <a method="POST" href="{% url 'analysis:index' %}" class="nav-link icon-link" onclick="document.getElementById('search_main').submit();">
-                <i class="mdi mdi-magnify"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+    <form method="POST" action="{% url 'analysisapp:index' %}" id='search_name' >
+      {% csrf_token %}
+      <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <input id='search_name' name="search_name" type="text" class="form-control" placeholder="다른 상품을 분석하려면 여기에 입력하세요" aria-label="search_name" aria-describedby="search" required>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item">
+            <a type="submit" method="POST" class="nav-link icon-link" onclick="document.getElementById('search_name').submit();">
+              <i class="mdi mdi-magnify"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </form>
 </nav>
   
