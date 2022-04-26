@@ -17,7 +17,7 @@
                   <div class="col-md-12 grid-margin stretch-card">                  
                     <div class="card">                   
                       <div class="card-body">
-                        {% comment %} <b>{{list.search_name}}</b> 전체리뷰({{list.article_review_cnt}})건 중 진솔한 순수리뷰 ({{list.article_pure_review_cnt}})건을 선별하였습니다. {% endcomment %}
+                         {% comment %} <b>{{list.search_name}}</b> 전체리뷰({{list.article_review_cnt}})건 중 진솔한 순수리뷰 ({{list.article_pure_review_cnt}})건을 선별하였습니다.  {% endcomment %}
                       </div>
                     </div> 
                   </div>
@@ -36,7 +36,6 @@
                           <p class="card-title">연관어분석</p>                     
                         </div>                      
                         {% comment %} <img src="{% get_static_prefix %}images/analysis/y{{item2}}.png" alt="image"/> {% endcomment %}
-                      </div>
                     </div>
                   </div>
                   <div class="col-md-6 stretch-card">
@@ -45,7 +44,7 @@
                         <div class="d-flex align-items-center justify-content-between flex-wrap">
                           <p class="card-title">감성어 분석</p>
                         </div>
-                        {% comment %} <img src="{% get_static_prefix %}images/analysis/k{{item2}}.png" alt="image"/> {% endcomment %}
+                         {% comment %} <img src="{% get_static_prefix %}images/analysis/k{{item2}}.png" alt="image"/>  {% endcomment %}
                       </div>
                     </div>
                   </div>
@@ -60,7 +59,7 @@
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">순수리뷰 </h4>
-                      {% comment %} <div class="table-responsive">
+                      <div class="table-responsive">
                         <table class="table table-striped">                      
                           <tbody>
                             {% if row %}
@@ -80,14 +79,14 @@
                           </tbody>
                             {% endif %}
                         </table>
-                      </div> {% endcomment %}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {% include 'analysisapp/buy_link.html' %}
+          {% comment %} {% include 'analysisapp/buy_link.html' %}  {% endcomment %}
           <!-- row end -->
         </div>
         {% include 'analysisapp/analysis_fotter.html' %}
