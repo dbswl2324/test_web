@@ -19,6 +19,7 @@ from django.urls import reverse
 app_name = 'homeapp'
 
 def home(request):
+    # user_id = request.session.get['user']
     return render(request, "homeapp/home.html")
 # Create your views here.
 
@@ -26,13 +27,32 @@ def board(request):
     return render(request, "homeapp/board.html")
 
 def login(request):
-    if request.method == "POST":
+    if request.method == "POST": 
         user_id = request.POST.get('username')
         user_pw = request.POST.get('password')
-        m = Member.objects.get(user_id = user_id, user_pw = user_pw)
-        return redirect('homeapp:home')
-    else:
-        return render(request, "homeapp/login.html")
+        try:
+            m = Member.objects.get(user_id = user_id, user_pw = user_pw)
+        except:
+            m = ""
+        if len(m) !=0:
+            request.session['success'] = True
+            return render(request, 'homeapp/home.html')
+        else:
+            return render(request, 'homeapp/login.html')
+    
+    return render(request, "homeapp/login.html")
+
+        # 키(key)가 없을 경우, 기본값(예: '0')을 설정하고 세션 값을 가져오기 
+        # count = request.session.get('count', '0') 
+
+        # # 세션 값 설정하기 
+        # request.session['count'] = '1' 
+
+        # 세션 값 삭제하기 
+        # del request.session['count']
+        # return redirect('homeapp:home')
+        # return render(request, 'homeapp/login.html')
+    # else:
 
 
 def signup(request):

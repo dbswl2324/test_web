@@ -20,20 +20,22 @@
           </fieldset>
         </form>
         <div class="suggestion">
-          {% if user.is_authenticated %}
-            <button type="button">
-              <a href="{% url 'homeapp:logout' %}">logout</a>
-            </button>
-            |
-            <button type="button">
-              <a href="{% url 'homeapp:mypage' %}">my page</a>
-          {% else %}
+          {% if user.is_anonymous %}
+            로그아웃중임~
             <button type="button">
               <a href="{% url 'homeapp:login' %}">login</a>
             </button>
             |
             <button type="button">
               <a href="{% url 'homeapp:signup' %}">sign up</a>
+          {% else %}
+            로그인햇음~
+            <button type="button">
+              <a href="{% url 'homeapp:logout' %}">logout</a>
+            </button>
+            |
+            <button type="button">
+              <a href="{% url 'homeapp:mypage' %}">mypage</a>
             </button>
           {% endif %}
         </div>
